@@ -1,0 +1,25 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    padding-top: 5rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.choice-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.choice-description {
+    font-size: 16px;
+}
+
+#story p {
+    font-family: 'Averia Serif Libre';
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 5rem;
+}

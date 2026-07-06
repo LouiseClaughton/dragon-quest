@@ -1,19 +1,38 @@
 #choices {
     display: flex;
+    flex-direction: column;
     gap: 20px;
     justify-content: center;
+    align-items: center;
     margin-top: 20px;
+}
+
+#choices .choices-container {
+    display: flex;
+    gap: 20px;
 }
 
 .class-card {
     width: 160px;
     padding: 15px;
     border-radius: 12px;
-    background: #1e1e1e;
-    color: white;
+    border: black 2px solid;
     cursor: pointer;
     text-align: center;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.class-card.active {
+    background: #1e1e1e;
+    color: white;
+}
+
+.positive span {
+    color: #339b33
+}
+
+.negative span {
+    color: red;
 }
 
 .class-card:hover {
@@ -31,9 +50,36 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
+    font-family: 'Averia Serif Libre';
 }
 
-.class-label .choice-title {
+.class-preview {
+    font-family: 'Averia Serif Libre';
+    text-align: center;
+}
+
+.class-preview .choice-title {
     font-size: 18px;
     font-weight: bold;
+}
+
+.class-preview .choice-description {
+    display: none;
+}
+
+.confirm {
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+    outline: none;
+    border-radius: 30px;
+    padding: .5rem 1rem;
+    transition: background-color .15s ease;
+    font-family: 'Averia Serif Libre';
+}
+
+.confirm:hover {
+    cursor: pointer;
+    background-color: white;
+    color: black;
 }
