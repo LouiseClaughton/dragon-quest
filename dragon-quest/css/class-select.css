@@ -1,0 +1,39 @@
+#choices {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.class-card {
+    width: 160px;
+    padding: 15px;
+    border-radius: 12px;
+    background: #1e1e1e;
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.class-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+.class-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.class-label {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.class-label .choice-title {
+    font-size: 18px;
+    font-weight: bold;
+}
