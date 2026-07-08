@@ -1,4 +1,4 @@
-#choices {
+#choices:has(.class-card) {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -82,4 +82,10 @@
     cursor: pointer;
     background-color: white;
     color: black;
+}
+
+.stats-container {
+    display: flex;
+    column-gap: 2rem;
+    text-align: left;
 }

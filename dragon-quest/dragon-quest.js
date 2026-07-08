@@ -33,6 +33,8 @@ function updateStory() {
 
     if (uiMode !== "story") return;
 
+    removeFirstLine();
+
     storyDiv.innerHTML = "";
     choicesDiv.innerHTML = "";
 
@@ -100,8 +102,12 @@ function renderChoices() {
                 showClassPreview(choice);
             };
 
-            choicesContainer.appendChild(card);
+            if (choicesContainer) {
+                choicesContainer.appendChild(card);
+            }
         } else {
+            document.querySelector('.confirm')?.remove();
+
             const btn = document.createElement("button");
             btn.textContent = choice.text;
 
@@ -110,10 +116,14 @@ function renderChoices() {
                 updateStory();
             };
 
-            choicesDiv.appendChild(btn);
+            if (choicesDiv) {
+                choicesDiv.appendChild(btn);
+            }
         }
 
-        choicesDiv.insertBefore(choicesContainer, preview);
+        if (choicesDiv && choicesContainer && preview) {
+            choicesDiv.insertBefore(choicesContainer, preview);
+        }
     });
 }
 
@@ -131,12 +141,14 @@ function showClassPreview(choice) {
 
     preview.innerHTML = `
         <h2>${formatChoiceText(choice.text)}</h2>
-        <p class="${stats.strength > 0 ? 'positive' : stats.strength < 0 ? 'negative' : ''}">Strength: <span>${stats.strength}</span></p>
-        <p class="${stats.dexterity > 0 ? 'positive' : stats.dexterity < 0 ? 'negative' : ''}">Dexterity: <span>${stats.dexterity}</span></p>
-        <p class="${stats.constitution > 0 ? 'positive' : stats.constitution < 0 ? 'negative' : ''}">Constitution: <span>${stats.constitution}</span></p>
-        <p class="${stats.wisdom > 0 ? 'positive' : stats.wisdom < 0 ? 'negative' : ''}">Wisdom: <span>${stats.wisdom}</span></p>
-        <p class="${stats.intelligence > 0 ? 'positive' : stats.intelligence < 0 ? 'negative' : ''}">Intelligence: <span>${stats.intelligence}</span></p>
-        <p class="${stats.charisma > 0 ? 'positive' : stats.charisma < 0 ? 'negative' : ''}">Charisma: <span>${stats.charisma}</span></p>
+        <div class="stats-container">
+            <p class="${stats.strength > 0 ? 'positive' : stats.strength < 0 ? 'negative' : ''}">Strength: <span>${stats.strength}</span></p>
+            <p class="${stats.dexterity > 0 ? 'positive' : stats.dexterity < 0 ? 'negative' : ''}">Dexterity: <span>${stats.dexterity}</span></p>
+            <p class="${stats.constitution > 0 ? 'positive' : stats.constitution < 0 ? 'negative' : ''}">Constitution: <span>${stats.constitution}</span></p>
+            <p class="${stats.wisdom > 0 ? 'positive' : stats.wisdom < 0 ? 'negative' : ''}">Wisdom: <span>${stats.wisdom}</span></p>
+            <p class="${stats.intelligence > 0 ? 'positive' : stats.intelligence < 0 ? 'negative' : ''}">Intelligence: <span>${stats.intelligence}</span></p>
+            <p class="${stats.charisma > 0 ? 'positive' : stats.charisma < 0 ? 'negative' : ''}">Charisma: <span>${stats.charisma}</span></p>
+        </div>
     `;
 
     confirm.classList.remove("hidden");
@@ -212,6 +224,26 @@ function getStats(text) {
         intelligence,
         charisma
     };
+}
+
+function removeFirstLine() {
+    const story = document.querySelector('#story');
+    const choices = document.querySelector('#choices');
+
+    // Slight delay to allow choices and content to populate
+    setTimeout(() => {
+        console.log(story);
+        console.log(choices);
+
+        if (choices.querySelector('.class-card')) {
+            console.log('classes detected. returning');
+            return;
+        } else {
+            const firstLine = story.querySelector('p');
+            console.log('First Line: ', firstLine);
+            firstLine.remove();
+        }
+    }, 10);
 }
 
 /* =========================
